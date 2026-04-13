@@ -59,6 +59,21 @@
       pointer-events: auto;
     }
 
+    /* ── Prevents FOUC (Flash of Unstyled Content) on banner elements ── */
+    .hero-slide h1,
+    .hero-slide p,
+    .hero-slide a.inline-flex,
+    .hero-slide img {
+      visibility: hidden;
+    }
+    
+    html.motion-ready .hero-slide h1,
+    html.motion-ready .hero-slide p,
+    html.motion-ready .hero-slide a.inline-flex,
+    html.motion-ready .hero-slide img {
+      visibility: visible;
+    }
+
     /* ══════════════════════════════════════════
        POST-BANNER SECTIONS
     ══════════════════════════════════════════ */

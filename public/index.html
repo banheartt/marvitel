@@ -4349,6 +4349,9 @@
         }
       });
 
+      // Elementos iniciais já receberam opacity 0. Revelar (via CSS) para não piscar
+      document.documentElement.classList.add('motion-ready');
+
       // Threshold: O elemento só começa a animar quando passar 50px para dentro da tela de baixo para cima
       const viewOptions = { margin: "0px 0px -50px 0px" };
 
