@@ -1,0 +1,821 @@
+    /* ── Global ── */
+    body {
+      font-family: 'Sora', sans-serif;
+    }
+
+    /* ── Hero gradient background (fallback quando vídeo não carrega) ── */
+    .hero-bg {
+      background: radial-gradient(ellipse at 70% 50%, #0a3d47 0%, #071e26 50%, #040e13 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Navbar scroll shadow ── */
+    .navbar-scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ── Carousel dots ── */
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      transition: background 0.4s, transform 0.4s;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .dot.active {
+      background: rgba(29, 165, 179, 0.85);
+      transform: scale(1.3);
+    }
+
+    /* ── Slider — CSS Grid single-cell stacking ──
+       Todos os slides ocupam a mesma célula do grid.
+       Apenas opacity muda — sem position:absolute, sem layout-jump.
+    ── */
+    .hero-slides {
+      display: grid;
+      flex: 1;
+      width: 100%;
+    }
+
+    .hero-slide {
+      grid-row: 1;
+      grid-column: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 1000ms ease;
+      pointer-events: none;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ══════════════════════════════════════════
+       POST-BANNER SECTIONS
+    ══════════════════════════════════════════ */
+
+    /* ── Tabs de segmento ── */
+    .seg-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 20px;
+      border-radius: 999px;
+      border: 0.9px solid rgba(71, 79, 84, 0.4);
+      font-size: 0.75rem;
+      font-weight: 100;
+      color: #474F54;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: transparent;
+    }
+
+    .seg-tab:hover {
+      border-color: #1DA5B3;
+      color: #1DA5B3;
+    }
+
+    .seg-tab.active {
+      border-color: #1DA5B3;
+      color: #1DA5B3;
+    }
+
+    /* ── Navbar variant: white/translucent tabs over dark header ── */
+    .seg-tab-nav {
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #ffffff;
+    }
+
+    .seg-tab-nav:hover {
+      border-color: #1DA5B3;
+      color: #1DA5B3;
+    }
+
+    .seg-tab-nav.active {
+      border-color: #1DA5B3;
+      color: #1DA5B3;
+    }
+
+    /* ── Segment Dropdown Menu Styles ── */
+    .seg-dropdown-menu.show {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .seg-dropdown-menu {
+      transform: translateY(10px);
+      pointer-events: none;
+    }
+
+    .seg-dropdown-item {
+      cursor: pointer;
+    }
+
+    .seg-dropdown-item:hover {
+      background-color: rgba(29, 165, 179, 0.1);
+      color: #1DA5B3 !important;
+    }
+
+    /* ── On desktop, remove top spacing from section-tabs since tabs moved to navbar ── */
+    @media (min-width: 1024px) {
+      #section-tabs {
+        padding-top: 3rem;
+      }
+    }
+
+    /* ── Service cards no carrossel de tabs ── */
+    .svc-card {
+      background: #fff;
+      border: 1px solid #e5e9ec;
+      border-radius: 12px;
+      padding: 28px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 0 0 auto;
+      min-height: 210px;
+      justify-content: center;
+    }
+
+
+    .svc-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(29, 165, 179, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: #1DA5B3;
+    }
+
+    /* ── Cards carousel ── */
+
+    /* Viewport: clips o track — NUNCA mostra card parcial */
+    .svc-viewport {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    /* Track: linha de cards que desliza via transform */
+    .svc-track {
+      display: flex;
+      gap: 18px;
+      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* Cada card ocupa exatamente 1/3 do viewport (desktop) */
+    .svc-track .svc-card {
+      flex: 0 0 calc((100% - 36px) / 3);
+      /* (viewport - 2 gaps) / 3 */
+      width: calc((100% - 36px) / 3);
+      box-sizing: border-box;
+    }
+
+    /* Mobile e tablet: 1 card por vez */
+    @media (max-width: 1023px) {
+      .svc-track .svc-card {
+        flex: 0 0 100%;
+        width: 100%;
+        min-height: 280px;
+      }
+    }
+
+    /* Refinamento das Badges Metrics para Mobile/Tablet (2+1 layout) */
+    @media (max-width: 1023px) {
+      .metric-badge {
+        width: calc(50% - 8px) !important;
+        max-width: none !important;
+      }
+
+      .metric-badge:nth-child(3) {
+        width: 100% !important;
+      }
+    }
+
+    /* Nav arrows */
+    .svc-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #6b7280;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+
+    .svc-arrow:hover {
+      color: #1DA5B3;
+    }
+
+    /* ── Metric badges ── */
+    .metric-badge {
+      border-radius: 8px;
+      background: #1DA5B3;
+      color: #fff;
+      padding: 2px 20px;
+      text-align: center;
+      width: 170px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Partners strip ── */
+    .partner-logo {
+      height: 28px;
+      opacity: 0.65;
+      filter: grayscale(100%);
+      object-fit: contain;
+      transition: opacity 0.2s, filter 0.2s;
+    }
+
+    .partner-logo:hover {
+      opacity: 1;
+      filter: none;
+    }
+
+    /* ── Plans section ── */
+    .plan-tab {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #9ca3af;
+      padding: 4px 0 8px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .plan-tab.active {
+      color: #1DA5B3;
+      border-bottom-color: #1DA5B3;
+    }
+
+    .plan-card {
+      background: #fff;
+      border: 1px solid #e5e9ec;
+      border-radius: 14px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .plan-card:hover {
+      box-shadow: 0 10px 32px rgba(29, 165, 179, 0.13);
+      transform: translateY(-3px);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -11px;
+      right: 18px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+
+    .plan-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.87rem;
+      color: #4b5563;
+      line-height: 1.4;
+    }
+
+    .plan-check {
+      color: #1DA5B3;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Solutions section ── */
+    .solution-item {
+      border-left: 2px solid #1DA5B3;
+      padding-left: 14px;
+      margin-bottom: 24px;
+    }
+
+    .solution-item-title {
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: #1DA5B3;
+      margin-bottom: 4px;
+    }
+
+    .solution-item-desc {
+      font-size: 0.87rem;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* ── Full-bleed background (escapa do container sem poluir o HTML) ── */
+    .fullbleed-bg {
+      position: relative;
+      background: transparent;
+      /* o fundo real é feito pelo ::before */
+    }
+
+    .fullbleed-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 100%;
+      background: #fff;
+      z-index: 0;
+    }
+
+    .fullbleed-bg>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Variante para a faixa de parceiros (bordas laterais e fundo branco) */
+    .parceiros-strip {
+      position: relative;
+      background: transparent;
+    }
+
+    .parceiros-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 100%;
+      background: #fff;
+      border-top: 1px solid #f3f4f6;
+      border-bottom: 1px solid #f3f4f6;
+      z-index: 0;
+    }
+
+    .parceiros-strip>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Logos marquee (infinite auto-scroll) ── */
+    .logos-track {
+      --logos-fade-width: 40px;
+      -webkit-mask-image: linear-gradient(to right, transparent, black var(--logos-fade-width), black calc(100% - var(--logos-fade-width)), transparent);
+      mask-image: linear-gradient(to right, transparent, black var(--logos-fade-width), black calc(100% - var(--logos-fade-width)), transparent);
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .logos-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 25s linear infinite;
+    }
+
+    /* Each logo slot */
+    .logo-item {
+      width: auto;
+      height: 60px;
+      object-fit: contain;
+      flex-shrink: 0;
+      margin: 0 12px;
+      opacity: 0.65;
+      filter: grayscale(1);
+      transition: filter 0.3s, opacity 0.3s;
+    }
+
+    .logo-item:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    /* Tablet */
+    @media (min-width: 640px) {
+      .logo-item {
+        width: auto;
+        height: 68px;
+        margin: 0 24px;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+      .logo-item {
+        width: auto;
+        height: 80px;
+        margin: 0 32px;
+      }
+    }
+
+    /* Aumenta o tamanho das logos especificamente nas abas Condomínio e Evento */
+    #panel-condominio .logo-item,
+    #panel-evento .logo-item {
+      height: 70px;
+      margin: 0 14px;
+    }
+
+    @media (min-width: 640px) {
+      #panel-condominio .logo-item,
+      #panel-evento .logo-item {
+        height: 85px;
+        margin: 0 28px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #panel-condominio .logo-item,
+      #panel-evento .logo-item {
+        height: 95px;
+        margin: 0 36px;
+      }
+    }
+
+    /* Tab content panels */
+    .tab-panel {
+      display: none;
+    }
+
+    /* ── Back to top button ── */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #1DA5B3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(29, 165, 179, 0.35);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #back-to-top:hover {
+      background: #045163;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Plan tab panels */
+    .plan-panel {
+      display: none;
+    }
+
+    /* Usando display:block (não grid) para que o carrossel interno
+       tenha um containing block com largura definida */
+    .plan-panel.active {
+      display: block;
+    }
+
+    /* ── Plan Carousel (mobile / tablet only) ──
+
+       Estrutura:
+         .plan-carousel-outer   → clip + badge space + anchor das setas
+           .plan-carousel-viewport  → apenas agrupa o track
+             .plan-carousel-track   → flex row
+               .plan-card × N      → cada card = 1 slide
+         .plan-carousel-btn.prev/.next  → setas (dentro do outer)
+         .plan-carousel-dots            → indicadores
+    */
+
+    .plan-carousel-outer {
+      position: relative;
+      overflow: hidden;
+      /* clip do slide – garante 1 card visível */
+      padding-top: 14px;
+      /* espaço para o plan-badge (top:-11px) */
+      box-sizing: border-box;
+    }
+
+    .plan-carousel-viewport {
+      /* overflow: hidden foi retirado para evitar o corte das badges (top:-11px) */
+      border-radius: 16px;
+    }
+
+    .plan-carousel-track {
+      display: flex;
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* min-width garante largura correta mesmo quando flex-basis:%
+       não consegue resolver o containing block */
+    .plan-carousel-track .plan-card {
+      flex: 0 0 auto;
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Setas: posicionadas DENTRO do outer (sem extravasar) */
+    .plan-carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #e5e9ec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .plan-carousel-btn:hover {
+      background: #f0fafb;
+      box-shadow: 0 4px 14px rgba(29, 165, 179, 0.18);
+    }
+
+    /* sobrepostas nas bordas do card, sem sair do outer */
+    .plan-carousel-btn.prev {
+      left: 8px;
+    }
+
+    .plan-carousel-btn.next {
+      right: 8px;
+    }
+
+    /* Mobile e tablet: sem setas */
+    @media (max-width: 1023px) {
+      .plan-carousel-btn {
+        display: none !important;
+      }
+
+      /* Usar margin em vez de padding: o overflow:hidden do outer agora corta perfeitamente 
+         na borda lateral, mas permite exibir a parte superior (padding-top: 14px) com a badge */
+      .plan-carousel-outer {
+        margin-left: 8px;
+        margin-right: 8px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    /* dots */
+    .plan-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 18px;
+      padding: 4px 0;
+      /* espaço para o scale(1.3) do dot ativo não ser cortado */
+    }
+
+    .plan-carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+      padding: 0;
+    }
+
+    .plan-carousel-dot.active {
+      background: #1DA5B3;
+      transform: scale(1.3);
+    }
+
+    /* Em desktop (lg+): esconde o outer e mostra o grid normal */
+    @media (min-width: 1024px) {
+      .plan-carousel-outer {
+        display: none !important;
+      }
+
+      .plan-panel-grid {
+        display: grid !important;
+      }
+    }
+
+    /* Em mobile/tablet: esconde o grid e mostra o carrossel */
+    @media (max-width: 1023px) {
+      .plan-panel-grid {
+        display: none !important;
+      }
+
+      .plan-panel.active .plan-carousel-outer {
+        display: block;
+      }
+    }
+
+    /* ══════════════════════════════════════════
+       TELAS GRANDES — 2K (≥1800px) e 4K (≥2400px)
+       Aumenta containers e paddings pós-banner.
+       O banner principal NÃO é afetado.
+    ══════════════════════════════════════════ */
+
+    @media (min-width: 1800px) {
+
+      /* Containers de conteúdo pós-banner crescem */
+      #section-tabs .max-w-6xl,
+      section:not(.hero-bg) .max-w-6xl,
+      footer .max-w-6xl {
+        max-width: 90rem;
+        /* 1440px */
+      }
+
+      /* Mais respiro vertical nas seções */
+      #section-tabs {
+        padding-top: 5rem;
+      }
+
+
+      /* Cards de serviço */
+      .svc-card {
+        padding: 32px 26px 28px;
+        min-height: 250px;
+      }
+
+      .svc-icon-box {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 16px;
+      }
+
+      /* Metric badges */
+      .metric-badge {
+        padding: 3px 0px;
+        width: 190px;
+        border-radius: 8px;
+      }
+
+      /* Plan cards */
+      .plan-card {
+        padding: 34px 28px 28px;
+      }
+    }
+
+    @media (min-width: 2400px) {
+
+      /* Containers ainda maiores para 4K */
+      #section-tabs .max-w-6xl,
+      section:not(.hero-bg) .max-w-6xl,
+      footer .max-w-6xl {
+        max-width: 110rem;
+        /* 1760px */
+      }
+
+      /* Muito mais respiro vertical */
+      #section-tabs {
+        padding-top: 4rem;
+      }
+
+      /* Tipografia base escala suavemente */
+      body {
+        font-size: 17px;
+      }
+
+
+      /* Cards de serviço */
+      .svc-card {
+        padding: 40px 32px 36px;
+        min-height: 300px;
+      }
+
+      .svc-icon-box {
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+        margin-bottom: 20px;
+      }
+
+      /* Metric badges */
+      .metric-badge {
+        padding: 6px 20px;
+        width: 260px;
+        border-radius: 8px;
+      }
+
+      /* Plan cards */
+      .plan-card {
+        padding: 42px 34px 34px;
+        border-radius: 20px;
+      }
+    }
+
+    /* Aggressive override for badge horizontal padding between tablet and Full HD */
+    @media (min-width: 1024px) and (max-width: 1920px) {
+      .metric-badge {
+        padding-left: 60px !important;
+        padding-right: 60px !important;
+        width: auto !important;
+        min-width: 250px !important;
+      }
+    }
+
+    /* ── Cookie Notice ── */
+    .cookie-notice-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      max-width: 360px;
+      background: #ffffff;
+      color: #4b5563;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      z-index: 9999;
+      transform: translateY(0);
+      opacity: 1;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      font-size: 0.8rem;
+      border: 1px solid #f3f4f6;
+    }
+
+    .cookie-notice-bar.hide {
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+
+    .cookie-notice-content p {
+      margin: 0 0 16px 0;
+      line-height: 1.6;
+    }
+
+    .cookie-notice-content a {
+      color: #1DA5B3;
+      text-decoration: underline;
+    }
+
+    .cookie-notice-btn {
+      background: #1DA5B3;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .cookie-notice-btn:hover {
+      background: #045163;
+    }
+
+    @media (max-width: 640px) {
+      .cookie-notice-bar {
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        max-width: none;
+      }
+    }
