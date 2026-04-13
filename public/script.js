@@ -561,3 +561,19 @@ backToTop.addEventListener('click', () => {
     setTimeout(() => cookieBar.remove(), 300);
   });
 })();
+
+// ── HASH NAVIGATION (Condomínios) ──
+function checkHashAndNavigate() {
+  if (window.location.hash === '#condominios') {
+    const tabCondominio = document.querySelector('.seg-tab[data-seg="condominio"]');
+    if (tabCondominio) {
+      setTimeout(() => {
+        // Ignora a animação e força o scroll da tab
+        tabCondominio.click();
+      }, 150);
+    }
+  }
+}
+
+window.addEventListener('load', checkHashAndNavigate);
+window.addEventListener('hashchange', checkHashAndNavigate);
