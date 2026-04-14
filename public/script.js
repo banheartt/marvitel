@@ -437,6 +437,7 @@ document.querySelectorAll('.plan-tab').forEach(tab => {
     { trackId: 'plan-track-internet', dotsId: 'plan-dots-internet', planKey: 'internet' },
     { trackId: 'plan-track-adicionais', dotsId: 'plan-dots-adicionais', planKey: 'adicionais' },
     { trackId: 'plan-track-internet-condominio', dotsId: 'plan-dots-internet-condominio', planKey: 'internet-condominio' },
+    { trackId: 'plan-track-banda-larga-condominio', dotsId: 'plan-dots-banda-larga-condominio', planKey: 'banda-larga-condominio' },
     { trackId: 'plan-track-adicionais-condominio', dotsId: 'plan-dots-adicionais-condominio', planKey: 'adicionais-condominio' },
     { trackId: 'plan-track-tv-condominio', dotsId: 'plan-dots-tv-condominio', planKey: 'tv-condominio' },
     { trackId: 'plan-track-internet-evento', dotsId: 'plan-dots-internet-evento', planKey: 'internet-evento' },

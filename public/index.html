@@ -1649,7 +1649,9 @@
             <div class="flex justify-center gap-8 mb-8 border-b border-gray-200" role="tablist"
               aria-label="Categorias de planos">
               <button id="tab-internet-condominio" class="plan-tab active" data-plan="internet-condominio" role="tab"
-                aria-selected="true" aria-controls="plan-panel-internet-condominio">Internet</button>
+                aria-selected="true" aria-controls="plan-panel-internet-condominio">INTERNET DEDICADA</button>
+              <button id="tab-banda-larga-condominio" class="plan-tab" data-plan="banda-larga-condominio" role="tab"
+                aria-selected="false" aria-controls="plan-panel-banda-larga-condominio">BANDA LARGA</button>
               <button id="tab-tv-condominio" class="plan-tab" data-plan="tv-condominio" role="tab" aria-selected="false"
                 aria-controls="plan-panel-tv-condominio">TV</button>
               <button id="tab-adicionais-condominio" class="plan-tab" data-plan="adicionais-condominio" role="tab"
@@ -1916,6 +1918,105 @@
               </div><!-- /plan-panel-grid -->
 
             </div><!-- /plan-panel-internet -->
+
+            <!-- Panel Banda Larga -->
+            <div id="plan-panel-banda-larga-condominio" class="plan-panel" role="tabpanel"
+              aria-labelledby="tab-banda-larga-condominio">
+
+              <!-- CARROSSEL: mobile/tablet -->
+              <div class="plan-carousel-outer" id="plan-carousel-banda-larga-condominio">
+                <div class="plan-carousel-viewport">
+                  <div class="plan-carousel-track" id="plan-track-banda-larga-condominio">
+
+                    <!-- Card Banda Larga -->
+                    <div class="plan-card">
+                      <svg class="text-azul-tradicao mb-4 mt-2" width="22" height="22" fill="none" stroke="currentColor"
+                        stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                      </svg>
+                      <h3 class="text-base font-semibold text-gray-800 mb-1">Banda Larga Fibra Óptica</h3>
+                      <div class="text-[10px] text-gray-500 font-light mt-1 uppercase tracking-wide">Planos a partir de</div>
+                      <div class="flex items-baseline gap-1 mb-1">
+                        <span class="text-xs text-gray-500">R$</span>
+                        <span class="text-2xl font-bold text-gray-900">89,90</span>
+                        <span class="text-xs text-gray-400 font-light">por mês</span>
+                      </div>
+                      <hr class="my-4 border-gray-100" />
+                      <ul class="flex flex-col gap-3 mb-6">
+                        <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>Acesso via fibra óptica com equipamento Wifi 6</li>
+                        <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>Taxa de download de 100% e upload de 10%</li>
+                        <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>Suporte 24h/dia</li>
+                        <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>Taxa de instalação: <strong class="text-gray-700 ml-1">GRATUITA</strong></li>
+                      </ul>
+                      <a href="https://api.whatsapp.com/send?phone=558006068075&text=Ol%C3%A1!%20Venho%20atrav%C3%A9s%20do%20site%20da%20Marvitel%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20que%20voc%C3%AAs%20oferecem."
+                        target="_blank"
+                        class="mt-auto inline-block text-center text-xs font-semibold bg-azul-tradicao text-white py-2.5 px-6 rounded-lg hover:bg-rio-sergipe transition-colors duration-300">Consultar
+                        disponibilidade</a>
+                    </div>
+
+                  </div><!-- /plan-carousel-track -->
+                </div><!-- /plan-carousel-viewport -->
+              </div><!-- /plan-carousel-outer -->
+              <div id="plan-dots-banda-larga-condominio" class="flex justify-center gap-2 mt-3 lg:hidden"></div>
+
+              <!-- GRID: desktop -->
+              <div class="plan-panel-grid grid-cols-1 gap-6" style="display:none">
+
+                <!-- Card Banda Larga (desktop grid) -->
+                <div class="plan-card max-w-sm mx-auto">
+                  <svg class="text-azul-tradicao mb-4 mt-2" width="22" height="22" fill="none" stroke="currentColor"
+                    stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                  </svg>
+                  <h3 class="lg:text-[18px] font-semibold text-gray-800 mb-1">Banda Larga Fibra Óptica</h3>
+                  <div class="text-[10px] text-gray-500 font-light mt-1 uppercase tracking-wide">Planos a partir de</div>
+                  <div class="flex items-baseline gap-1 mb-1">
+                    <span class="text-xs text-gray-500">R$</span>
+                    <span class="text-2xl font-bold text-gray-900">89,90</span>
+                    <span class="text-xs text-gray-400 font-light">por mês</span>
+                  </div>
+                  <hr class="my-4 border-gray-100" />
+                  <ul class="flex flex-col gap-3 mb-6">
+                    <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>Acesso via fibra óptica com equipamento Wifi 6</li>
+                    <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>Taxa de download de 100% e upload de 10%</li>
+                    <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>Suporte 24h/dia</li>
+                    <li class="plan-feature"><svg class="plan-check" width="13" height="13" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>Taxa de instalação: <strong class="text-gray-700 ml-1">GRATUITA</strong></li>
+                  </ul>
+                  <a href="https://api.whatsapp.com/send?phone=558006068075&text=Ol%C3%A1!%20Venho%20atrav%C3%A9s%20do%20site%20da%20Marvitel%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20que%20voc%C3%AAs%20oferecem."
+                    target="_blank"
+                    class="mt-auto inline-block text-center text-xs font-semibold bg-azul-tradicao text-white py-2.5 px-6 rounded-lg hover:bg-rio-sergipe transition-colors duration-300">Consultar
+                    disponibilidade</a>
+                </div>
+
+              </div><!-- /plan-panel-grid -->
+
+            </div><!-- /plan-panel-banda-larga -->
 
             <!-- Panel Adicionais -->
             <div id="plan-panel-adicionais-condominio" class="plan-panel" role="tabpanel"
