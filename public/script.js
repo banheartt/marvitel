@@ -446,10 +446,10 @@ document.querySelectorAll('.plan-tab').forEach(tab => {
 
   configs.forEach(({ trackId, dotsId, planKey }) => {
     const track = document.getElementById(trackId);
-    const dotsContainer = document.getElementById(dotsId);
-    if (!track || !dotsContainer) return;
+    if (!track) return;
 
     const outer = track.closest('.plan-carousel-outer');
+    const dotsContainer = dotsId ? document.getElementById(dotsId) : null;
     const cards = Array.from(track.querySelectorAll('.plan-card'));
     const total = cards.length;
     let current = 0;
@@ -478,6 +478,25 @@ document.querySelectorAll('.plan-tab').forEach(tab => {
       });
     }
 
+    function updateDots() {
+      if (!dotsContainer) return;
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.className = i === current ? 'plan-dot plan-dot-active' : 'plan-dot';
+      });
+    }
+
+    function renderDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = i === 0 ? 'plan-dot plan-dot-active' : 'plan-dot';
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', () => { goTo(i); });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
     function goTo(idx) {
       if (idx < 0) current = total - 1;
       else if (idx >= total) current = 0;
@@ -485,7 +504,7 @@ document.querySelectorAll('.plan-tab').forEach(tab => {
       
       const w = getSlideWidth();
       track.style.transform = 'translateX(-' + (current * w) + 'px)';
-      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      updateDots();
     }
 
     function refresh() {
@@ -494,17 +513,6 @@ document.querySelectorAll('.plan-tab').forEach(tab => {
     }
 
     carouselRefreshFns[planKey] = refresh;
-
-    dotsContainer.innerHTML = '';
-    const dots = [];
-    for (let i = 0; i < total; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'plan-carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Plano ' + (i + 1));
-      dot.addEventListener('click', () => goTo(i));
-      dotsContainer.appendChild(dot);
-      dots.push(dot);
-    }
 
     document.querySelectorAll('.plan-carousel-btn[data-carousel="' + trackId + '"]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -527,6 +535,7 @@ document.querySelectorAll('.plan-tab').forEach(tab => {
     });
 
     setCardWidths();
+    renderDots();
     goTo(0);
   });
 })();

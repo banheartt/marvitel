@@ -544,7 +544,6 @@
              .plan-carousel-track   → flex row
                .plan-card × N      → cada card = 1 slide
          .plan-carousel-btn.prev/.next  → setas (dentro do outer)
-         .plan-carousel-dots            → indicadores
     */
 
     .plan-carousel-outer {
@@ -624,31 +623,6 @@
       }
     }
 
-    /* dots */
-    .plan-carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 18px;
-      padding: 4px 0;
-      /* espaço para o scale(1.3) do dot ativo não ser cortado */
-    }
-
-    .plan-carousel-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #cbd5e1;
-      border: none;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.25s;
-      padding: 0;
-    }
-
-    .plan-carousel-dot.active {
-      background: #1DA5B3;
-      transform: scale(1.3);
-    }
 
     /* Em desktop (lg+): esconde o outer e mostra o grid normal */
     @media (min-width: 1024px) {
@@ -670,6 +644,27 @@
       .plan-panel.active .plan-carousel-outer {
         display: block;
       }
+    }
+
+    /* ── Plan Carousel Dots ── */
+    .plan-dot {
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: #d1d5db;
+      border-radius: 9999px;
+      height: 8px;
+      width: 8px;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .plan-dot-active {
+      background: #1DA5B3;
+      width: 20px;
+    }
+
+    .plan-dot:hover:not(.plan-dot-active) {
+      background: #9ca3af;
     }
 
     /* ══════════════════════════════════════════
