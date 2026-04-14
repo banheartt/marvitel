@@ -66,7 +66,7 @@
     .hero-slide img {
       visibility: hidden;
     }
-    
+
     html.motion-ready .hero-slide h1,
     html.motion-ready .hero-slide p,
     html.motion-ready .hero-slide a.inline-flex,
@@ -426,7 +426,7 @@
     /* Each logo slot */
     .logo-item {
       width: auto;
-      height: 60px;
+      height: 100px;
       object-fit: contain;
       flex-shrink: 0;
       margin: 0 12px;
@@ -453,7 +453,7 @@
     @media (min-width: 1024px) {
       .logo-item {
         width: auto;
-        height: 80px;
+        height: 85px;
         margin: 0 32px;
       }
     }
@@ -461,11 +461,12 @@
     /* Aumenta o tamanho das logos especificamente nas abas Condomínio e Evento */
     #panel-condominio .logo-item,
     #panel-evento .logo-item {
-      height: 70px;
+      height: 120px;
       margin: 0 14px;
     }
 
     @media (min-width: 640px) {
+
       #panel-condominio .logo-item,
       #panel-evento .logo-item {
         height: 85px;
@@ -474,9 +475,10 @@
     }
 
     @media (min-width: 1024px) {
+
       #panel-condominio .logo-item,
       #panel-evento .logo-item {
-        height: 95px;
+        height: 100px;
         margin: 0 36px;
       }
     }
